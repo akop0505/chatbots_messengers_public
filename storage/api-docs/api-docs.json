@@ -1,0 +1,141 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "5m3 API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/send": {
+            "post": {
+                "tags": [
+                    "\u041e\u0427\u0415\u0420\u0415\u0414\u042c \u0421\u041e\u041e\u0411\u0429\u0415\u041d\u0418\u0419"
+                ],
+                "summary": "\u0414\u043e\u0432\u0430\u0432\u0438\u0442\u044c \u0441\u043e\u043e\u0431\u0448\u0435\u043d\u0438\u044f \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c",
+                "consumes": [
+                    "application/json;charset=UTF-8"
+                ],
+                "produces": [
+                    "application/json, text/plain"
+                ],
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "formData",
+                        "description": "\u041a\u043b\u044e\u0447\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u0430",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "channel",
+                        "in": "formData",
+                        "description": "\u041a\u0430\u043d\u0430\u043b",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "sms",
+                            "email",
+                            "viber",
+                            "whatsapp",
+                            "telegram",
+                            "fb"
+                        ]
+                    },
+                    {
+                        "name": "phones",
+                        "in": "formData",
+                        "description": "\u041d\u043e\u043c\u0435\u0440\u0430 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u043e\u0432, \u0435\u0441\u043b\u0438 \u043a\u0430\u043d\u0430\u043b - sms \u0438\u043b\u0438 whatsapp",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "in": "body",
+                        "description": "\u0410\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u043e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u0435\u043b\u044f, \u0432 \u0432\u0438\u0434\u0435 { name:`senderName`, email:`senderaemail@test.com` }, \u0435\u0441\u043b\u0438 \u043a\u0430\u043d\u0430\u043b - email",
+                        "required": false,
+                        "schema": {
+                            "type": "object"
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "name": "to",
+                        "in": "body",
+                        "description": "\u041c\u0430\u0441\u0441\u0438\u0432 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0449\u0438\u0445 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u044b\u0435 \u0430\u0434\u0440\u0435\u0441\u0430 \u043f\u043e\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u0435\u0439, \u0432 \u0432\u0438\u0434\u0435 [ { email:`receiveraddress@test.com` } ], \u0435\u0441\u043b\u0438 \u043a\u0430\u043a\u043d\u0430\u043b - email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "format": "json"
+                    },
+                    {
+                        "name": "event_id",
+                        "in": "formData",
+                        "description": "\u0421\u043e\u0431\u044b\u0442\u0438\u0435 (id)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "receiver_id",
+                        "in": "formData",
+                        "description": "\u041f\u043e\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u044c (id)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "country",
+                        "in": "formData",
+                        "description": "\u042f\u0437\u044b\u043a (lng code)",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "en",
+                            "ru"
+                        ]
+                    },
+                    {
+                        "name": "parameters",
+                        "in": "body",
+                        "description": "\u041e\u0431\u044a\u0435\u043a\u0442 \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u0448\u0430\u0431\u043b\u043e\u043d\u0430 \u0432 \u0432\u0438\u0434\u0435 {client_name: \u0441\u0435\u0440\u0433\u0435\u0439, ...}",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

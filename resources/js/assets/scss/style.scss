@@ -1,0 +1,14 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// Import styles
+@import "~vue-datetime/dist/vue-datetime.css";
+
+// If you want to add something do it here
+@import "custom";
+
+// ie fixes
+@import "ie-fix";
